@@ -1,0 +1,15 @@
+#! /bin/bash
+#
+# Comments - my first script 
+# Date: 10-31-2020
+#
+echo "My script name is : $0"
+echo "Today is : `date`"
+
+echo "My login name is: $LOGNAME"
+echo "Welcome to my script"
+echo "-----------"
+echo "Looking at all files in my home directory"
+ls -R $HOME
+echo "-----------"
+echo "Good bye!"
