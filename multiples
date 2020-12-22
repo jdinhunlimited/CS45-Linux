@@ -1,0 +1,14 @@
+#! /bin/bash
+#
+# multiples
+#
+i=1
+while (( i <= 10 ))
+do
+if (( i % 5 == 0 ))
+then
+echo "The first multiple of 5 between 1 and 10 is: $i"
+break
+fi
+(( i += 1 ))
+done
