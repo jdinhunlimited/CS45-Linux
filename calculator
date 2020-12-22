@@ -1,0 +1,138 @@
+#! /bin/bash
+#
+# Jonathan Dinh
+# Functions script for compression and backup
+check_dir () {
+while true
+do
+echo "First, please type in the directory you would like to backup"
+read answer
+if [ -d $answer ]
+then
+echo "$answer is a directory"
+Dir=$answer
+break
+else
+echo "$answer is not a directory, try again"
+fi
+done
+}
+menu () {
+echo "Welcome to cs45 backup utility"
+echo "------------------------------"
+echo "This utilities backs up all files in a given directory"
+cat <<END
+	   Menu
+---------------------------------------
+	1. Backup
+	2. Compress
+	3. Compress and backup
+	4. Quit menu
+---------------------------------------
+END
+}
+backup_func(){
+echo "Now backing up all your files"
+BACKUP_DIR="/$HOME/.secret/.backup"
+`chmod 700 $BACKUP_DIR`
+`cp -R $Dir $BACKUP_DIR`
+echo "donezo"
+}
+compress_func(){
+echo "Which compression utility would you like to use, gzip or tar?"
+read choice
+           case $choice in
+               1|1.|gzip|Gzip)
+                `gzip -r $Dir`
+		echo "all done"
+                ;;
+               2|2.|tar|Tar)
+                `tar -czvf $Dir.tar.gz $Dir`
+		echo "all done"
+                ;;
+esac
+}
+compress_and_backup_func(){
+echo "I am compressing and backing up"
+}
+function read_input
+{
+while true
+do
+    echo -n "Please select a number to continue: "
+	read choice
+	   case $choice in
+	       1|1.|backup|Backup)
+		backup_func
+		;;
+	       2|2.|Compress|compress)
+		compress_func
+		;;
+	       3|3.|'Compress and backup')
+		compress_and_backup_func
+		;;
+	       4|4.|Quit|quit|'Quit menu')
+		echo "Exiting"
+			exit 5
+			;;
+		*)
+		echo "Sorry, not a valid option. Try again."
+			;;
+esac
+done
+}
+check_dir
+menu
+read_input
+[cs45aa05@mc-redhat01 ~]$ cd review
+[cs45aa05@mc-redhat01 review]$ cat calculator
+#! /bin/bash
+# COMMENTS.....
+# .....
+#
+# calculate using two numbers
+add () {
+sum="$(($number1+$number2))"
+echo "$sum is the sum"
+}
+subtract() {
+difference="$(($number1-$number2))"
+echo "$difference is the difference"
+}
+multiply() {
+product="$(($number1*$number2))"
+echo "$product is the product"
+}
+divide(){
+quotient="$(($number1/$number2))"
+echo "$quotient is the quotient"
+}
+
+echo "Please input a number"
+read answer
+number1=$answer
+echo "Please input another number"
+read answer
+number2=$answer
+if [ -n $number1 ]
+then
+echo "would you like to add, subtract, multiply, or divide?"
+read choice
+case $choice in 
+add)
+add
+;;
+subract)
+subtract
+;;
+multiply)
+multiply
+;;
+divide)
+divide
+;;
+esac
+else
+echo "not a number, try again"
+break
+fi
