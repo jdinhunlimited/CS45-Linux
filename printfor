@@ -1,0 +1,11 @@
+#! /bin/bash
+# 
+# 
+for (( $num = 0; $num <= 20; $num++ ))
+do    
+    if (( $num % 2 == 0 ))
+      then 
+      continue 
+    fi 
+    echo Number is: $num
+done

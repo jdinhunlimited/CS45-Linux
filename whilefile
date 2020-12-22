@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# whilefile
+#
+#
+if [ "$#" -eq 0 ]
+then
+echo "$0 needs arguments"
+fi
+
+while [ "$#" -ne 0 ]
+do    
+	echo "Current arg is $1"    
+	shift
+done
+	echo "No more args"
+	echo "$*"
+	echo "Have a good day"
