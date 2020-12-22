@@ -1,0 +1,12 @@
+# ! /bin/bash
+# Test if user is on
+if who | grep aaa
+then
+echo "logged in"
+else
+echo "not logged in"
+echo "wanna find out?"
+read answer
+echo "Your answer: $answer"
+fi
+
