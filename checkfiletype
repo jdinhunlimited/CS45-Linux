@@ -1,0 +1,36 @@
+#! /bin/bash
+# check directory
+echo "Please enter a directory: "
+read filetype
+if [ -d $filetype ]
+then
+echo "$filetype is a directory"
+echo "Do you want to see permissions of $filetype?"
+read answer
+   if [ $answer = "yes" ]
+	then
+	   echo "doing listing of directory $filetype"
+	   ls -ld /etc
+   fi
+elif [ -f $filetype ] 
+then 
+echo "$filetype is a file, we will now check if it's executable"
+echo -n "Do you want to see the permissions of: $filetype? "
+read answer
+if [ $answer = "yes" ] 
+   then
+      echo "Doing listing of $filetype"
+      ls -lh $filetype
+fi
+if [[ -L $filetype ]]
+then
+echo "$filetype is a symbolic link with `readlink -f $filetype` as the parent file"
+parent=`readlink -f $filetype`
+echo "$parent is `ls -l $parent |awk '{print $5}'` bytes large and belongs to `ls -l $parent | awk '{print $3}'`"
+fi
+fi
+#if [-x $dir]
+#then
+#echo "This is executible"
+# echo "$dir is not a directory or file or does not exist" 
+
